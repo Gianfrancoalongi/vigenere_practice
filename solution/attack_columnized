@@ -1,20 +1,42 @@
 #!/bin/bash
 N=1
 LETTERS=("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
+ROW_I=0
 for ROW in $(bash columns_to_rows ${1})
 do 
-    printf "Row ${N} "
-    BEST_KEY=0
-    BEST_DIST=$(bash caesar 1 ${ROW} | bash letter_frequency | bash distance_from_english)
-    for KEY in {1..25}
+    KEY=0
+    while true 
     do
-	RES=$(bash caesar ${KEY} ${ROW} | bash letter_frequency | bash distance_from_english)
-	if [[ ${RES} < ${BEST_DIST} ]]
-	then
-	    BEST_KEY=${KEY}
-	    BEST_DIST=${RES}
-	fi
+	clear
+	echo "COLUMN:$((${ROW_I}+1)) KEY:${KEY} (${LETTERS[${KEY}]})"
+	bash caesar ${KEY} ${ROW} | bash letter_frequency | bash plot_difference_to_english
+
+	read INPUT
+	case ${INPUT} in
+	    n*)
+		KEY=$((${KEY}+1))
+		if (( ${KEY} > 25 ))
+		then
+		    KEY=0
+		fi
+		;;
+	    p*)
+		KEY=$((${KEY}-1))
+		if (( ${KEY} < 0 ))
+		then
+		    KEY=25
+		fi
+		;;
+	    d*)
+		SELECTED[${ROW_I}]=${KEY}
+		ROW_I=$((${ROW_I}+1))
+		break
+		;;
+	esac
     done
-    printf "%2s %2s %2f\n" ${BEST_KEY} ${LETTERS[${BEST_KEY}]} ${BEST_DIST}
-    N=$((N+1))
+done
+echo "Selected keys for columns "
+for KEY in ${SELECTED[@]}
+do
+    printf "%3i %3s \n" ${KEY} ${LETTERS[${KEY}]}
 done
