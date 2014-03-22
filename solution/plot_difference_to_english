@@ -11,7 +11,7 @@ do
     Y=${INPUT_FREQ[${i}]}
     LETTER=${LETTERS[${i}]}
     ENGLISH_STAPLE=$(perl -e "print \"e\" x (${X}/${PERC_PER}*80)")
-    INPUT_STAPLE=$(perl -e "print \"+\" x (${Y}/${PERC_PER}*80)")
+    INPUT_STAPLE=$(perl -e "print \"/\" x (${Y}/${PERC_PER}*80)")
     printf "%s|%s\n" ${LETTER} ${INPUT_STAPLE}
     printf " |%s\n" ${ENGLISH_STAPLE}
 done
