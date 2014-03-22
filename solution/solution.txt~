@@ -23,7 +23,7 @@ This means finding the distances at which segments repeat and their frequency
      
 Next, check the factors of all the most common distances 20 40 52 60
 
-    $> bash distance_factors 20 40 52 60
+    $> for d in 20 40 52 60; do bash distance_factors ${d}; done
     1 2 4 5 10
     1 2 4 5 8 10 20
     1 2 4 13 26
