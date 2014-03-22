@@ -1,0 +1,12 @@
+#!/bin/bash
+ENGLISH_FREQ=( $(awk '{print $2}' english_frequency.data) )
+INPUT_FREQ=( $(awk '{print $2}' ${1}) )
+DIST=0
+for((i=0;i<${#ENGLISH_FREQ[@]};i++))
+do
+    X=${ENGLISH_FREQ[${i}]}
+    Y=${INPUT_FREQ[${i}]}
+    DIFF_SQUARE=$(echo "scale=5;(${X} - ${Y})^2" | bc)
+    DIST=$(echo "scale=5;${DIST}+${DIFF_SQUARE}"|bc)
+done
+echo "scale=5;sqrt(${DIST})" | bc
