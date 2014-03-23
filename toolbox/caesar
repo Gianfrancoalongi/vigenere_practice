@@ -1,0 +1,15 @@
+#!/bin/bash
+# $0 KEY STR => CIPHER
+LETTERS=( "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" 
+ROT=${1}
+for 
+do
+	ROT_I=$(( ${i}-${ROT} ))
+	if [[ ${ROT_I} < 0 ]]
+	then
+	    
+	fi
+	ROTATED=${ROTATED}${LETTERS[${ROT_I}]}
+	STD=${STD}${LETTERS[${i}]}
+done
+ | tr ${STD} ${ROTATED}

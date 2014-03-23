@@ -1,0 +1,10 @@
+#!/bin/bash
+awk 'BEGIN{FS=""}
+     { for(i=1;i<=NF;i++) {
+        part[i]=part[i] $i 
+       }
+     }
+     END{ for(i=1;i<=NF;i++) {
+           printf "%s\n",part[i]
+          }
+        }' ${1}

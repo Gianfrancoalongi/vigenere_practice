@@ -1,0 +1,12 @@
+#!/bin/bash
+for NUM in $@
+do
+    for((i=1;i< ;i++))
+    do
+	if 
+	then
+	    printf "%i " ${i}
+	fi
+    done
+    echo ""
+done
