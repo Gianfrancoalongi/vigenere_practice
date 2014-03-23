@@ -68,5 +68,10 @@ y 1.974
 z 0.074	
 
     $> bash attack_columnized cipher_columnized_4.txt
+       Selected keys for columns
+         3   d
+        14   o
+         9   j
+        14   o
 
 
